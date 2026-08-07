@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    // The potato that was tapped. When this has a value, SwiftUI shows its sheet.
+    @State private var selectedPotato: Potato?
+
     /// A LazyVGrid needs one GridItem per column. Six flexible columns,
     /// each the same width, with 12 points of space between them.
     private let columns = Array(
@@ -23,7 +26,13 @@ struct ContentView: View {
                     // LazyVGrid fills left to right, then wraps to the next row.
                     LazyVGrid(columns: columns, spacing: 12) {
                         ForEach(1...Farm.plotCount, id: \.self) { plot in
-                            PlotView(plot: plot, potato: potatoes.potato(inPlot: plot))
+                            let potato = potatoes.potato(inPlot: plot)
+
+                            PlotView(plot: plot, potato: potato)
+                                .onTapGesture {
+                                    // Empty plots do not have a farmer to show.
+                                    selectedPotato = potato
+                                }
                         }
                     }
 
@@ -32,6 +41,10 @@ struct ContentView: View {
                 .padding()
             }
             .navigationTitle("🥔 Potato Farm")
+            .sheet(item: $selectedPotato) { potato in
+                // Pass the selected name into the sheet instead of looking it up there.
+                FarmerNameSheet(name: potato.name)
+            }
         }
     }
 
@@ -65,6 +78,23 @@ struct ContentView: View {
 
     private func list(_ plots: [Int]) -> String {
         plots.map(String.init).joined(separator: ", ")
+    }
+}
+
+/// A small sheet that receives the farmer's name from ContentView.
+struct FarmerNameSheet: View {
+    let name: String
+
+    var body: some View {
+        VStack(spacing: 16) {
+            Text("This potato belongs to")
+                .font(.headline)
+
+            Text(name)
+                .font(.largeTitle.bold())
+        }
+        .padding()
+        .presentationDetents([.height(180)])
     }
 }
 
