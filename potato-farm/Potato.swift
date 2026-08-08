@@ -12,7 +12,7 @@ import SwiftUI
 struct Potato: Identifiable {
     let id = UUID()
 
-    /// Which plot this potato grows in, from 1 to 42.
+    /// Which plot this potato grows in, from 1 to 67.
     let plot: Int
 
     /// The name shown inside the circle. Keep it short so it fits!
@@ -22,11 +22,10 @@ struct Potato: Identifiable {
     let color: Color
 }
 
-/// The size of the field. 6 columns × 7 rows = 42 plots.
+/// The size of the field. 67 plots, laid out 6 across.
 enum Farm {
     static let columns = 6
-    static let rows = 7
-    static let plotCount = columns * rows
+    static let plotCount = 67
 }
 
 extension Array where Element == Potato {
@@ -38,7 +37,7 @@ extension Array where Element == Potato {
             .sorted()
     }
 
-    /// Plot numbers outside 1...42, which would never show up on screen.
+    /// Plot numbers outside 1...67, which would never show up on screen.
     var invalidPlots: [Int] {
         map(\.plot)
             .filter { !(1...Farm.plotCount).contains($0) }

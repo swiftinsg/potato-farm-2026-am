@@ -12,7 +12,7 @@ import SwiftUI
 //   🥔  ADD YOURSELF TO THE FARM  🥔
 //
 //   1. Run the app and find an empty plot. Empty plots show their
-//      number (1 to 42), counting left to right, top to bottom.
+//      number (1 to 67), counting left to right, top to bottom.
 //   2. Add ONE line to the list below with that plot number, your
 //      name, and a colour you like.
 //   3. Run the app again — your potato should be there!
@@ -43,5 +43,6 @@ let potatoes: [Potato] = [
     Potato(plot: 4, name: "Tristan", color: .indigo),
 
     // ── Students: add your line below this one! ───────────────────
-    Potato(plot:6, name:"Cheng Xi", color: .teal)
+    Potato(plot:6, name:"Cheng Xi", color: .teal),
+    Potato(plot:67, name:"Tristan ❤️ Bryan", color: .pink)
 ]
