@@ -46,4 +46,5 @@ let potatoes: [Potato] = [
     Potato(plot:6, name:"Cheng Xi", color: .teal)   
     Potato(plot: 5, name: "Fake YJ", color: .blue)
 
+    Potato(plot: 10, name: "Val", color: .blue),
 ]
