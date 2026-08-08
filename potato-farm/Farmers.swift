@@ -44,4 +44,7 @@ let potatoes: [Potato] = [
 
     // ── Students: add your line below this one! ───────────────────
     Potato(plot: 26, name: "Cheng Zhang", color: .green)
+    
+    Potato(plot: 5, name: "Fake YJ", color: .blue)
+
 ]
